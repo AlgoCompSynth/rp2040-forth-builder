@@ -56,6 +56,12 @@ then
   cp zsh_temp $HOME/.zshrc
 fi
 
+echo "If you received the error message"
+echo ""
+echo "E: Unable to locate package code"
+echo ""
+echo "you will need to install Visual Studio Code"
+echo "if you want to use it."
 echo ""
 echo "You will need to restart your shell before"
 echo "using the Raspberry Pi toolchain."
