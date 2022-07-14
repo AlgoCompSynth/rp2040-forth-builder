@@ -10,7 +10,10 @@ else
   echo ""
   echo "Cannot find "$PICO_SDK_PATH/external/pico_sdk_import.cmake""
   echo "Building requires this file. You probably need to run"
-  echo "./pico-toolchain.sh" to install the tools."this"pico_sdk_import.cmake""
+  echo ""
+  echo "rp2040-forth-builder/installers/apt-pico-toolchain.sh"
+  echo ""
+  echo "to install the tools."
   echo ""
   echo "Exiting."
   exit
