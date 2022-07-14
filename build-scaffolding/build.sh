@@ -22,8 +22,3 @@ echo "Running 'cmake'"
 cmake .. > $HERE/cmake.log 2>&1
 echo "Running 'make'"
 make > $HERE/make.log 2>&1
-cd ..
-
-echo ""
-echo "Listing .uf2 files"
-find . -name '*.uf2'
