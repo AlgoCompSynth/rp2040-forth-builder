@@ -17,12 +17,11 @@ else
 fi
 
 echo "Creating fresh 'cmake-build' directory"
-rm -fr cmake-build; mkdir cmake-build
-cd cmake-build
-echo "Configuring"
-cmake ..
-echo "Cross-compiling and linking"
-make
+rm -fr cmake-build; mkdir cmake-build; cd cmake-build
+echo "Running 'cmake'"
+cmake .. > $HERE/cmake.log 2>&1
+echo "Running 'make'"
+make > $HERE/make.log 2>&1
 cd ..
 
 echo ""
