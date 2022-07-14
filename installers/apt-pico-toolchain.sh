@@ -33,7 +33,7 @@ then
   exit
 fi
 echo 'Running installer script'
-./pico_setup.sh
+./pico_setup.sh || true
 popd
 
 echo ""
@@ -43,7 +43,6 @@ then
   grep -v -e "export PICO_" $HOME/.bashrc > bash_temp
   sed "s;TOOLCHAIN_PATH;$TOOLCHAIN_PATH;" export-skeleton >> bash_temp
   echo "Updating $HOME/.bashrc"
-  diff bash_temp $HOME/.bashrc || true
   cp bash_temp $HOME/.bashrc
 fi
 
@@ -52,7 +51,6 @@ then
   grep -v -e "export PICO_" $HOME/.zshrc > zsh_temp
   sed "s;TOOLCHAIN_PATH;$TOOLCHAIN_PATH;" export-skeleton >> zsh_temp
   echo "Updating $HOME/.zshrc"
-  diff zsh_temp $HOME/.zshrc || true
   cp zsh_temp $HOME/.zshrc
 fi
 
