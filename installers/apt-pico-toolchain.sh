@@ -50,6 +50,7 @@ chmod +x pico_setup.sh
 
 echo "Running installer script"
 ./pico_setup.sh > ./pico_setup.log || true
+mv pico_setup.* pico/
 popd
 
 echo ""
