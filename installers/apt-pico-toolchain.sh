@@ -33,8 +33,13 @@ then
   echo "WSL detected - you will need to install *Windows*"
   echo "Visual Studio Code if you want to use VSCode."
   sleep 5
+elif [ -f "/etc/apt/sources.list.d/raspi.list" ]
+then
+  echo "Raspberry Pi detected - VSCode will be installed" 
+  echo "from Raspberry Pi repos."
+  sleep 5
 else
-  echo "Install Visual Studio Code from Microsoft"
+  echo "Installing Visual Studio Code from Microsoft"
   echo "repository"
   sudo cp vscode.list /etc/apt/sources.list.d/
   sudo apt-get update
@@ -51,6 +56,14 @@ chmod +x pico_setup.sh
 echo "Running installer script"
 ./pico_setup.sh > ./pico_setup.log || true
 mv pico_setup.* pico/
+
+echo "Rebuilding the examples"
+pushd pico/pico-examples
+rm -fr build; mkdir build; cd build
+cmake .. >> ../pico_setup.log
+make --jobs=`nproc` >> ../pico_setup.log
+popd
+
 popd
 
 echo ""
