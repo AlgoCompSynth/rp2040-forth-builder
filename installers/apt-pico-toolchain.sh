@@ -30,9 +30,17 @@ fi
 
 if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null
 then
-  echo "WSL detected - you will need to install *Windows*"
-  echo "Visual Studio Code if you want to use VSCode."
-  sleep 5
+  export VSCODE_LOC=`which code`
+  if [ -x "$VSCODE_LOC" ]
+  then
+    echo "VSCode detected at $VSCODE_LOC - you can ignore"
+    echo "VSCode-related error messages."
+    sleep 5
+  else
+    echo "WSL detected - you will need to install *Windows*"
+    echo "Visual Studio Code if you want to use VSCode."
+    sleep 5
+  fi
 elif [ -f "/etc/apt/sources.list.d/raspi.list" ]
 then
   echo "Raspberry Pi detected - VSCode will be installed" 
@@ -40,7 +48,8 @@ then
   sleep 5
 else
   echo "Installing Visual Studio Code from Microsoft"
-  echo "repository"
+  echo "repository now"
+  sleep 2
   sudo cp vscode.list /etc/apt/sources.list.d/
   sudo apt-get update
   sudo apt-get install -qqy --no-install-recommends \
