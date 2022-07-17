@@ -4,22 +4,22 @@ set -e
 
 if [ "$1" = "" ]
 then
-  echo ''
-  echo 'This script needs an argument to specify a path for'
-  echo 'installing the Raspberry Pi Pico tools.'
-  echo ''
-  echo 'Usage: ./pico-toolchain.sh "path/to/install/tools"'
-  echo ''
-  echo 'The path will be created if it does not exist yet.'
-  echo 'The tools will be installed as sub-directories of'
-  echo '"path/to/install/tools/pico".'
+  echo ""
+  echo "This script needs an argument to specify a path for"
+  echo "installing the Raspberry Pi Pico tools."
+  echo ""
+  echo "Usage: ./pico-toolchain.sh /path/to/install/tools"
+  echo ""
+  echo "The path will be created if it does not exist yet."
+  echo "The tools will be installed as sub-directories of"
+  echo "/path/to/install/tools/pico."
   exit
 fi
 
 export TOOLCHAIN_PATH=$1
 mkdir --parents $TOOLCHAIN_PATH
 pushd $TOOLCHAIN_PATH
-echo 'Downloading installer script'
+echo "Downloading installer script"
 wget -q -nc https://raw.githubusercontent.com/raspberrypi/pico-setup/master/pico_setup.sh
 chmod +x pico_setup.sh
 
@@ -32,12 +32,12 @@ then
   echo "Exiting."
   exit
 fi
-echo 'Running installer script'
+echo "Running installer script"
 ./pico_setup.sh || true
 popd
 
 echo ""
-echo 'Updating PATH settings'
+echo "Updating PATH settings"
 if [ -f "$HOME/.bashrc" ]
 then
   grep -v -e "export PICO_" $HOME/.bashrc > bash_temp
@@ -59,13 +59,16 @@ echo ""
 echo "E: Unable to locate package code"
 echo ""
 echo "you will need to install Visual Studio Code"
-echo "manually if you want to use it. You can use"
-echo "the install scripts in"
+echo "manually if you want to use it."
 echo ""
-echo "'rp2040-forth-builder/installers'."
-echo ""
+echo "To use Visual Studio Code with the Windows"
+echo "Subsystem for Linux, please install Visual"
+echo "Studio Code in Windows and uninstall the Linux"
+echo "version in WSL. You can then use the `code`"
+echo "command in a WSL terminal just as you would"
+echo "in a normal command prompt."
 echo ""
 echo "You will need to restart your shell before"
 echo "using the Raspberry Pi toolchain."
 echo ""
-echo 'Finished!'
+echo "Finished!"
