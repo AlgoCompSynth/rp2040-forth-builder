@@ -77,6 +77,10 @@ pushd pico/pico-examples
 rm -fr build; mkdir build; cd build
 cmake .. >> ../pico_setup.log
 make --jobs=`nproc` >> ../pico_setup.log
+echo ""
+echo "Listing uf2 files"
+sleep 5
+find $PICO_PATH/pico-examples -name '*.uf2'
 popd
 
 popd
