@@ -23,10 +23,16 @@ sleep 5
 for dir in pimoroni-pico picosystem
 do
   pushd $dir
+  echo ""
   echo "Building $dir"
+  sleep 5
   rm -fr build; mkdir build; cd build
   cmake .. >> pimoroni.log
   make --jobs=`nproc` >> pimoroni.log
+  echo ""
+  echo "Listing uf2 files"
+  sleep 5
+  find $PICO_PATH/$dir -name '*.uf2'
   popd
 done
 
