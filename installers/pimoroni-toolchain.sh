@@ -12,11 +12,14 @@ then
   exit
 fi
 
-echo 'Cloning Pimoroni repositories'
+echo "Cloning Pimoroni repositories"
+sleep 5
 pushd $PICO_PATH
-git clone -b main https://github.com/pimoroni/pimoroni-pico.git --recursive > pimoroni.log
+git clone -b main https://github.com/pimoroni/pimoroni-pico.git --recurse-submodules > pimoroni.log
 git clone -b main https://github.com/pimoroni/picosystem.git >> pimoroni.log
+echo ""
 echo "Building the examples"
+sleep 5
 for dir in pimoroni-pico picosystem
 do
   pushd $dir

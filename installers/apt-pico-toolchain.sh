@@ -49,7 +49,7 @@ then
 else
   echo "Installing Visual Studio Code from Microsoft"
   echo "repository now"
-  sleep 2
+  sleep 5
   sudo cp vscode.list /etc/apt/sources.list.d/
   sudo apt-get update
   sudo apt-get install -qqy --no-install-recommends \
@@ -58,15 +58,21 @@ fi
 
 mkdir --parents $TOOLCHAIN_PATH
 pushd $TOOLCHAIN_PATH
+echo ""
 echo "Downloading installer script"
+sleep 5
 wget -q -nc https://raw.githubusercontent.com/raspberrypi/pico-setup/master/pico_setup.sh
 chmod +x pico_setup.sh
 
+echo ""
 echo "Running installer script"
+sleep 5
 ./pico_setup.sh > ./pico_setup.log || true
 mv pico_setup.* pico/
 
+echo ""
 echo "Rebuilding the examples"
+sleep 5
 pushd pico/pico-examples
 rm -fr build; mkdir build; cd build
 cmake .. >> ../pico_setup.log
@@ -77,6 +83,7 @@ popd
 
 echo ""
 echo "Updating PATH settings"
+sleep 5
 if [ -f "$HOME/.bashrc" ]
 then
   grep -v -e "export PICO_" $HOME/.bashrc > bash_temp
