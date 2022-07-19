@@ -28,7 +28,7 @@ do
   sleep 5
   rm -fr build; mkdir build; cd build
   cmake .. >> pimoroni.log
-  make --jobs=`nproc` >> pimoroni.log
+  make --jobs=`nproc` >> pimoroni.log || true
   echo ""
   echo "Listing uf2 files"
   sleep 5
