@@ -3,7 +3,7 @@ project:
 
 book:
   title: "Raspberry Pi Pico Forth"
-  author: "Jane Doe"
+  author: "M. Edward (Ed) Borasky"
   date: "7/20/2022"
   chapters:
     - index.qmd
