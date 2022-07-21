@@ -1,9 +1,53 @@
 # Introduction
 
-This is a book created from markdown and executable code.
+## What is this?
 
-See @knuth84 for additional discussion of literate programming.
+As the name implies, *Raspberry Pi Pico Forth* is a Forth system for the [Raspberry Pi Pico](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html "Raspberry Pi Pico and Pico W") micro-controller. There are other Forth systems for the Raspberry Pi Pico, most notably *Mecrisp* [@koch2022]. So why write my own?
 
-```{r}
-1 + 1
-```
+-   The goal of this project is a live-coding environment for algorithmic composition and digital sound synthesis. It's not clear how to do that in Mecrisp.
+
+-   Mecrisp is complex - there's a [large documentation site](https://mecrisp-stellaris-folkdoc.sourceforge.io/ "Mecrisp Stellaris Unofficial UserDoc"), but finding your way around it is daunting. I want something simpler, along the lines of *eForth* [@pintaske2020eforth] or *CamelForth* [@pintaske2018moving].
+
+-   Although the initial system will be designed for the Raspberry Pi Pico, I want to run it on other ARM Cortex micro-controllers. The Pico is at its heart a dual-core ARM Cortex M0+. That is pretty much the simplest ARM Cortex micro-controller around.\
+    \
+    Most other micro-controllers aimed at digital audio have hardware floating point and some even have digital signal processing assist functionality. To be fair, Mecrisp does run on many other ARM Cortex micro-controllers.
+
+-   Raspberry Pi Pico C/C++ SDK (@pico2022a; @pico2022b )- I want to build using the excellent tooling and documentation the Raspberry Pi Foundation provides; my guidebook is @smith2021rp2040. Mecrisp has its own build process.
+
+-   Integration with C/C++ libraries - there are numerous C and C++ libraries available for digital audio, and I don't want to re-invent them if I don't need to do so.
+
+## Why Forth?
+
+There are a few other ways to program a Raspberry Pi Pico. Other than the C/C++ SDK, the two main ones are *MicroPython* / *CircuitPython* and the *Arduino IDE*. Both are capable of generating code that runs on a variety of micro-controllers.
+
+The problem with MicroPython / CircuitPython is that I don't know Python. I can read Jupyter notebooks, but to actually write professional-level Python code, I'd need to learn more Python.
+
+The Arduino IDE is more promising at first glance. It's designed for beginners, it runs on all the micro-controllers I'd want to use, including, of course, the Raspberry Pi Pico. There are numerous audio projects for the Arduino; see, for example, @edstrom2016arduino and @cook2015arduino. And there's even a port of eForth to the Arduino IDE [@pintaske2020eforthard].
+
+But the native language of the Arduino IDE is Arduino's own dialect of C++, and I'm no more capable of writing professional-level C++ than I am of writing professional-level Python. And the Raspberry Pi Pico C/C++ SDK tooling and documentation are better than those of the Arduino IDE.
+
+Finally, there's no obvious way to write assembly code in the Arduino IDE. Writing an efficient Forth system requires either some complex C code, a complex meta-compiler written in Forth, or a small and simple assembly language kernel.
+
+Forth is an interactive interpreter like Python, but it's a good bit faster for two reasons:
+
+-   The parser is much simpler; the syntax is Reverse Polish notation, and
+
+-   It's built from the ground up from assembly language primitive operations.
+
+For a first course in Forth, see @pintaske2018programming.
+
+Ultimately, writing a Forth system from the ground up in assembly language is more fun than wrangling a few thousand lines of someone else's code or learning a complex language that I have no other use for. I already know Forth, and I earned a living for many years writing assembly code.
+
+## Target hardware
+
+The first version will run on the [Pimoroni Pico Audio Pack](https://shop.pimoroni.com/products/pico-audio-pack?variant=32369490853971). Later versions will run on the [Teensy 4.1](https://www.pjrc.com/store/teensy41.html) and the [Electro-Smith Daisy](https://www.electro-smith.com/daisy).
+
+## Initial feature set
+
+-   Assembly-language kernel ("inner interpreter" in Forth jargon). The threading model will be dictated by the requirement to run on all ARM Cortex-M micro-controllers.
+
+-   A Forth text interpreter ("outer interpreter" and "colon compiler") written in Forth. This will communicate with the user via the USB serial interface. There is also a serial interface on the Pico but I'm keeping that free for low-level debugging access.
+
+-   A Forth-style assembler for writing ARM Cortex M0+ code and code for all the specialized co-processors on the RP2040 CPU. See @smith2021rp2040 for the details.
+
+-   Integration with the Pimoroni C/C++ audio pack libraries.
