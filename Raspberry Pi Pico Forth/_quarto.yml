@@ -2,9 +2,9 @@ project:
   type: book
 
 book:
-  title: "Raspberry Pi Pico Forth"
+  title: "RP2040 Forth"
   author: "M. Edward (Ed) Borasky"
-  date: "7/20/2022"
+  date: "2022-07-21"
   chapters:
     - index.qmd
     - intro.qmd

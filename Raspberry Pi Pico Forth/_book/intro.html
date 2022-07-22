@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Raspberry Pi Pico Forth - 1&nbsp; Introduction</title>
+<title>RP2040 Forth - 1&nbsp; Introduction</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -97,7 +97,7 @@ div.csl-indent {
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Raspberry Pi Pico Forth</a> 
+      <a href="./">RP2040 Forth</a> 
     </div>
       </div>
       <div class="mt-2 flex-shrink-0 align-items-center">
@@ -162,7 +162,7 @@ div.csl-indent {
 <p>As the name implies, <em>Raspberry Pi Pico Forth</em> is a Forth system for the <a href="https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html" title="Raspberry Pi Pico and Pico W">Raspberry Pi Pico</a> micro-controller. There are other Forth systems for the Raspberry Pi Pico, most notably <em>Mecrisp</em> <span class="citation" data-cites="koch2022">(<a href="references.html#ref-koch2022" role="doc-biblioref">Koch 2022</a>)</span>. So why write my own?</p>
 <ul>
 <li><p>The goal of this project is a live-coding environment for algorithmic composition and digital sound synthesis. It’s not clear how to do that in Mecrisp.</p></li>
-<li><p>Mecrisp is complex - there’s a <a href="https://mecrisp-stellaris-folkdoc.sourceforge.io/" title="Mecrisp Stellaris Unofficial UserDoc">large documentation site</a>, but finding your way around it is daunting. I want something simpler, along the lines of <em>eForth</em> <span class="citation" data-cites="pintaske2020eforth">(<a href="references.html#ref-pintaske2020eforth" role="doc-biblioref">Pintaske and Ting 2020a</a>)</span> or <em>CamelForth</em> <span class="citation" data-cites="pintaske2018moving">(<a href="references.html#ref-pintaske2018moving" role="doc-biblioref">Pintaske and Rodriguez 2018</a>)</span>.</p></li>
+<li><p>Mecrisp is complex - there’s a <a href="https://mecrisp-stellaris-folkdoc.sourceforge.io/" title="Mecrisp Stellaris Unofficial UserDoc">large documentation site</a>, but finding your way around it is daunting. I want something simpler, along the lines of FIG-Forth <span class="citation" data-cites="pintaske2020fig">(<a href="references.html#ref-pintaske2020fig" role="doc-biblioref">Pintaske, Teal, and Ting 2020</a>)</span> <em>eForth</em> <span class="citation" data-cites="pintaske2020eforth">(<a href="references.html#ref-pintaske2020eforth" role="doc-biblioref">Pintaske and Ting 2020a</a>)</span> or <em>CamelForth</em> <span class="citation" data-cites="pintaske2018moving">(<a href="references.html#ref-pintaske2018moving" role="doc-biblioref">Pintaske and Rodriguez 2018</a>)</span>.</p></li>
 <li><p>Although the initial system will be designed for the Raspberry Pi Pico, I want to run it on other ARM Cortex micro-controllers. The Pico is at its heart a dual-core ARM Cortex M0+. That is pretty much the simplest ARM Cortex micro-controller around.<br>
 <br>
 Most other micro-controllers aimed at digital audio have hardware floating point and some even have digital signal processing assist functionality. To be fair, Mecrisp does run on many other ARM Cortex micro-controllers.</p></li>
@@ -182,7 +182,7 @@ Most other micro-controllers aimed at digital audio have hardware floating point
 <li><p>The parser is much simpler; the syntax is Reverse Polish notation, and</p></li>
 <li><p>It’s built from the ground up from assembly language primitive operations.</p></li>
 </ul>
-<p>For a first course in Forth, see <span class="citation" data-cites="pintaske2018programming">Pintaske and Pelc (<a href="references.html#ref-pintaske2018programming" role="doc-biblioref">2018</a>)</span>.</p>
+<p>For a first course in Forth, see <span class="citation" data-cites="brodie2022">Brodie (<a href="references.html#ref-brodie2022" role="doc-biblioref">2022</a>)</span>.</p>
 <p>Ultimately, writing a Forth system from the ground up in assembly language is more fun than wrangling a few thousand lines of someone else’s code or learning a complex language that I have no other use for. I already know Forth, and I earned a living for many years writing assembly code.</p>
 </section>
 <section id="target-hardware" class="level2" data-number="1.3">
@@ -200,6 +200,9 @@ Most other micro-controllers aimed at digital audio have hardware floating point
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
+<div id="ref-brodie2022" class="csl-entry" role="doc-biblioentry">
+Brodie, Leo. 2022. <span>“Starting Forth.”</span> Forth, Inc. <a href="https://www.forth.com/starting-forth/">https://www.forth.com/starting-forth/</a>.
+</div>
 <div id="ref-cook2015arduino" class="csl-entry" role="doc-biblioentry">
 Cook, M. 2015. <em>Arduino Music and Audio Projects</em>. Technology in Action Series. Apress. <a href="https://books.google.com/books?id=kK1PCwAAQBAJ">https://books.google.com/books?id=kK1PCwAAQBAJ</a>.
 </div>
@@ -209,11 +212,11 @@ Edstrom, B. 2016. <em>Arduino for Musicians: A Complete Guide to Arduino and Tee
 <div id="ref-koch2022" class="csl-entry" role="doc-biblioentry">
 Koch, Matthias. 2022. <span>“<span class="nocase">Mecrisp - Native code Forth for MSP430 and ARM Cortex</span>.”</span> <a href="http://mecrisp.sourceforge.net/">http://mecrisp.sourceforge.net/</a>.
 </div>
-<div id="ref-pintaske2018programming" class="csl-entry" role="doc-biblioentry">
-Pintaske, J., and S. Pelc. 2018. <em>Programming Forth: Version July 2016</em>. Amazon Digital Services LLC - Kdp Print Us. <a href="https://books.google.com/books?id=SvHSxQEACAAJ">https://books.google.com/books?id=SvHSxQEACAAJ</a>.
-</div>
 <div id="ref-pintaske2018moving" class="csl-entry" role="doc-biblioentry">
 Pintaske, J., and B. Rodriguez. 2018. <em>Moving Forth - Internals and TTL Processor: Forth Internals</em>. Amazon Digital Services LLC - Kdp Print Us. <a href="https://books.google.com/books?id=RGqhxgEACAAJ">https://books.google.com/books?id=RGqhxgEACAAJ</a>.
+</div>
+<div id="ref-pintaske2020fig" class="csl-entry" role="doc-biblioentry">
+Pintaske, J., S. Teal, and C. H. Ting. 2020. <em>FIG-Forth Manual: Documentation and Test in 1802 IP</em>. Independently Published. <a href="https://books.google.com/books?id=oFCVzQEACAAJ">https://books.google.com/books?id=oFCVzQEACAAJ</a>.
 </div>
 <div id="ref-pintaske2020eforth" class="csl-entry" role="doc-biblioentry">
 Pintaske, J., and C. H. Ting. 2020a. <em>EForth and Zen - 3rd Edition 2017: With 32-Bit 86eForth V5.2 for Visual Studio 2015</em>. Independently Published. <a href="https://books.google.com/books?id=ipi9zQEACAAJ">https://books.google.com/books?id=ipi9zQEACAAJ</a>.

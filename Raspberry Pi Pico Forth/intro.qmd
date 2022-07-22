@@ -6,7 +6,7 @@ As the name implies, *Raspberry Pi Pico Forth* is a Forth system for the [Raspbe
 
 -   The goal of this project is a live-coding environment for algorithmic composition and digital sound synthesis. It's not clear how to do that in Mecrisp.
 
--   Mecrisp is complex - there's a [large documentation site](https://mecrisp-stellaris-folkdoc.sourceforge.io/ "Mecrisp Stellaris Unofficial UserDoc"), but finding your way around it is daunting. I want something simpler, along the lines of *eForth* [@pintaske2020eforth] or *CamelForth* [@pintaske2018moving].
+-   Mecrisp is complex - there's a [large documentation site](https://mecrisp-stellaris-folkdoc.sourceforge.io/ "Mecrisp Stellaris Unofficial UserDoc"), but finding your way around it is daunting. I want something simpler, along the lines of FIG-Forth [@pintaske2020fig] *eForth* [@pintaske2020eforth] or *CamelForth* [@pintaske2018moving].
 
 -   Although the initial system will be designed for the Raspberry Pi Pico, I want to run it on other ARM Cortex micro-controllers. The Pico is at its heart a dual-core ARM Cortex M0+. That is pretty much the simplest ARM Cortex micro-controller around.\
     \
@@ -34,7 +34,7 @@ Forth is an interactive interpreter like Python, but it's a good bit faster for 
 
 -   It's built from the ground up from assembly language primitive operations.
 
-For a first course in Forth, see @pintaske2018programming.
+For a first course in Forth, see @brodie2022.
 
 Ultimately, writing a Forth system from the ground up in assembly language is more fun than wrangling a few thousand lines of someone else's code or learning a complex language that I have no other use for. I already know Forth, and I earned a living for many years writing assembly code.
 
