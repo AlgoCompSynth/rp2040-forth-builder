@@ -56,6 +56,20 @@ else
     code
 fi
 
+echo ""
+echo "Installing Linux build tools"
+sudo apt-get update
+sudo apt-get -qqy upgrade
+sudo apt-get -qqy install \
+  build-essential \
+  ca-certificates \
+  cmake \
+  gcc-arm-none-eabi \
+  libnewlib-arm-none-eabi \
+  software-properties-common \
+  time \
+  tree
+
 mkdir --parents $TOOLCHAIN_PATH
 pushd $TOOLCHAIN_PATH
 echo ""
@@ -67,21 +81,8 @@ chmod +x pico_setup.sh
 echo ""
 echo "Running installer script"
 sleep 5
-./pico_setup.sh > ./pico_setup.log || true
+/usr/bin/time ./pico_setup.sh > ./pico_setup.log || true
 mv pico_setup.* pico/
-
-echo ""
-echo "Rebuilding the examples"
-sleep 5
-pushd pico/pico-examples
-rm -fr build; mkdir build; cd build
-cmake .. >> ../pico_setup.log
-make --jobs=`nproc` >> ../pico_setup.log
-echo ""
-echo "Listing uf2 files"
-sleep 5
-find $PICO_PATH/pico-examples -name '*.uf2'
-popd
 
 popd
 
