@@ -15,8 +15,8 @@ fi
 echo "Cloning Pimoroni repositories"
 sleep 5
 pushd $PICO_PATH
-git clone -b main https://github.com/pimoroni/pimoroni-pico.git --recurse-submodules > pimoroni.log
-git clone -b main https://github.com/pimoroni/picosystem.git >> pimoroni.log
+git clone -b main https://github.com/pimoroni/pimoroni-pico.git --recurse-submodules > $PICO_PATH/pimoroni.log
+git clone -b main https://github.com/pimoroni/picosystem.git >> $PICO_PATH/pimoroni.log
 echo ""
 echo "Building the examples"
 sleep 5
@@ -27,8 +27,8 @@ do
   echo "Building $dir"
   sleep 5
   rm -fr build; mkdir build; cd build
-  cmake .. >> pimoroni.log
-  make --jobs=`nproc` >> pimoroni.log || true
+  cmake .. >> $PICO_PATH/pimoroni.log
+  /usr/bin/time make --jobs=`nproc` >> $PICO_PATH/pimoroni.log || true
   echo ""
   echo "Listing uf2 files"
   sleep 5
