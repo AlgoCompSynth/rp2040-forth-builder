@@ -17,6 +17,8 @@ then
 fi
 
 export TOOLCHAIN_PATH=$1
+export SKIP_VSCODE=1
+export SKIP_UART=1
 export PICO_PATH=$TOOLCHAIN_PATH/pico
 if [ -d "$PICO_PATH" ]
 then
@@ -26,34 +28,6 @@ then
   echo ""
   echo "Exiting."
   exit -2
-fi
-
-if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null
-then
-  export VSCODE_LOC=`which code`
-  if [ -x "$VSCODE_LOC" ]
-  then
-    echo "VSCode detected at $VSCODE_LOC - you can ignore"
-    echo "VSCode-related error messages."
-    sleep 5
-  else
-    echo "WSL detected - you will need to install *Windows*"
-    echo "Visual Studio Code if you want to use VSCode."
-    sleep 5
-  fi
-elif [ -f "/etc/apt/sources.list.d/raspi.list" ]
-then
-  echo "Raspberry Pi detected - VSCode will be installed" 
-  echo "from Raspberry Pi repos."
-  sleep 5
-else
-  echo "Installing Visual Studio Code from Microsoft"
-  echo "repository now"
-  sleep 5
-  sudo cp vscode.list /etc/apt/sources.list.d/
-  sudo apt-get update
-  sudo apt-get install -qqy --no-install-recommends \
-    code
 fi
 
 echo ""
