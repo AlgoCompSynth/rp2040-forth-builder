@@ -2,33 +2,13 @@
 
 set -e
 
-if [ "$1" = "" ]
-then
-  echo ""
-  echo "This script needs an argument to specify a path for"
-  echo "installing the Raspberry Pi Pico tools."
-  echo ""
-  echo "Usage: ./pico-toolchain.sh /path/to/install/tools"
-  echo ""
-  echo "The path will be created if it does not exist yet."
-  echo "The tools will be installed as *sub-directories* of"
-  echo "/path/to/install/tools/pico."
-  exit -1
-fi
-
-export TOOLCHAIN_PATH=$1
+export TOOLCHAIN_PATH=$HOME
 export SKIP_VSCODE=1
 export SKIP_UART=1
 export PICO_PATH=$TOOLCHAIN_PATH/pico
-if [ -d "$PICO_PATH" ]
-then
-  echo "Directory $PICO_PATH already exists."
-  echo "You will need to remove it to re-install the"
-  echo "toolchain."
-  echo ""
-  echo "Exiting."
-  exit -2
-fi
+echo ""
+echo "Removing existing Pico tools!"
+rm -fr $PICO_PATH
 
 echo ""
 echo "Installing Linux build tools"
@@ -78,6 +58,15 @@ then
   echo "Updating $HOME/.zshrc"
   cp zsh_temp $HOME/.zshrc
 fi
+
+echo "Cloning Pimoroni Pico repository"
+sleep 5
+pushd $PICO_PATH
+git clone -b main https://github.com/pimoroni/pimoroni-pico.git --recurse-submodules > $PICO_PATH/pimoroni.log
+popd
+
+echo ""
+echo "Finished!"
 
 echo "If you received the error message"
 echo ""
