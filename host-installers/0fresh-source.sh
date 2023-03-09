@@ -2,11 +2,11 @@
 
 set -e
 
-export TOOLCHAIN_PATH=$HOME
-export PICO_PATH=$TOOLCHAIN_PATH/pico
+export PICO_PATH=$HOME/pico
 export PICO_SDK_PATH=$PICO_PATH/pico-sdk
 export PICO_EXAMPLES_PATH=$PICO_PATH/pico-examples
 export PICO_EXTRAS_PATH=$PICO_PATH/pico-extras
+export PICO_PLAYGROUND_PATH=$PICO_PATH/pico-playground
 export PICO_PIMORONI_PATH=$PICO_PATH/pimoroni-pico
 echo ""
 echo "Removing existing Pico tools!"
@@ -32,15 +32,19 @@ pushd $PICO_PATH
 echo ""
 echo "Downloading Pico SDK"
 sleep 5
-git clone -b master https://github.com/raspberrypi/pico-sdk.git --recurse-submodules
+git clone https://github.com/raspberrypi/pico-sdk.git --recurse-submodules
 echo ""
 echo "Downloading Pico examples"
 sleep 5
-git clone -b master https://github.com/raspberrypi/pico-examples.git --recurse-submodules
+git clone https://github.com/raspberrypi/pico-examples.git --recurse-submodules
 echo ""
 echo "Downloading Pico extras"
 sleep 5
-git clone -b master https://github.com/raspberrypi/pico-extras.git --recurse-submodules
+git clone https://github.com/raspberrypi/pico-extras.git --recurse-submodules
+echo ""
+echo "Downloading Pico playground"
+sleep 5
+git clone https://github.com/raspberrypi/pico-playground.git --recurse-submodules
 echo ""
 echo "Downloading Pimoroni examples"
 sleep 5
