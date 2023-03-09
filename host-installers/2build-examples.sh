@@ -2,12 +2,7 @@
 
 set -e
 
-export PICO_PATH=$HOME/pico
-export PICO_SDK_PATH=$PICO_PATH/pico-sdk
-export PICO_EXAMPLES_PATH=$PICO_PATH/pico-examples
-export PICO_EXTRAS_PATH=$PICO_PATH/pico-extras
-export PICO_PLAYGROUND_PATH=$PICO_PATH/pico-playground
-export PICO_PIMORONI_PATH=$PICO_PATH/pimoroni-pico
+source set_pico_envars
 
 echo ""
 echo "Building the examples"
