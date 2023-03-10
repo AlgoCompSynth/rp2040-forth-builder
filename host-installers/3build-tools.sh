@@ -7,7 +7,7 @@ source set_pico_envars
 echo ""
 echo "Configuring OpenOCD"
 pushd $PICO_OPENOCD_PATH
-make clean
+make clean || true
 ./bootstrap
 ./configure --enable-ftdi --enable-sysfsgpio --enable-bcm2835gpio
 echo ""
